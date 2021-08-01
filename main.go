@@ -9,15 +9,15 @@ import (
 
 const versionString = "0.1.0 (Chill Hazelnut)"
 
-type actionsT struct {
+type actionT struct {
 	version bool
 }
 
 func main() {
-	var actions actionsT
+	var action actionT
 	cli := clir.NewCli("iyclo", "Well-oiled containers", versionString)
-	cli.BoolFlag("version", "Show version", &actions.version)
-	cli.Action(handleCli(&actions))
+	cli.BoolFlag("version", "Show version", &action.version)
+	cli.Action(handleCli(&action))
 	if err := cli.Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error encountered: %v\n", err)
 	}
@@ -27,9 +27,9 @@ func printVersion() {
 	fmt.Printf("%s\n", versionString)
 }
 
-func handleCli(actions *actionsT) clir.Action {
+func handleCli(action *actionT) clir.Action {
 	return func() error {
-		if (*actions).version {
+		if (*action).version {
 			printVersion()
 		}
 		return nil
