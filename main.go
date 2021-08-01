@@ -28,6 +28,7 @@ func main() {
 	cli.Action(handleCli(&action))
 	if err := cli.Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error encountered: %v\n", err)
+		os.Exit(1)
 	}
 }
 
@@ -54,6 +55,7 @@ func handleCli(action *actionT) clir.Action {
 		file, err := os.Create(log)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
+			os.Exit(1)
 		}
 		defer file.Close()
 		return nil
