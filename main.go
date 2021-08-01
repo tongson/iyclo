@@ -15,6 +15,7 @@ var assetsSrc embed.FS
 
 type actionT struct {
 	version bool
+	log string
 }
 
 func main() {
@@ -23,6 +24,7 @@ func main() {
 	cli.SetBannerFunction(customBanner)
 	cli.BoolFlag("version", "Show version", &action.version)
 	cli.BoolFlag("v", "Show version", &action.version)
+	cli.StringFlag("log", "Path to JSON log", &action.log)
 	cli.Action(handleCli(&action))
 	if err := cli.Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error encountered: %v\n", err)
@@ -43,6 +45,17 @@ func handleCli(action *actionT) clir.Action {
 		if (*action).version {
 			printVersion()
 		}
+		var log string
+		if (*action).log == "" {
+			log = "/var/log/iyclo.json"
+		} else {
+			log = (*action).log
+		}
+		file, err := os.Create(log)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
+		}
+		defer file.Close()
 		return nil
 	}
 }
