@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"fmt"
 	"os"
 
@@ -8,6 +9,9 @@ import (
 )
 
 const versionString = "0.1.0 (Chill Hazelnut)"
+
+//go:embed assets/*
+var assetsSrc embed.FS
 
 type actionT struct {
 	version bool
@@ -26,8 +30,8 @@ func main() {
 }
 
 func customBanner(cli *clir.Cli) string {
-	return `iyclo
-` + fmt.Sprintf("%s\n%s", cli.ShortDescription(), cli.Version())
+	s, _ := assetsSrc.ReadFile("assets/iyclo.txt")
+	return fmt.Sprintf("%s\n%s\n%s", string(s), cli.ShortDescription(), cli.Version())
 }
 
 func printVersion() {
