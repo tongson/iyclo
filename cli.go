@@ -33,11 +33,12 @@ func handleCli(action *actionT) clir.Action {
 			log = (*action).log
 		}
 		file, err := os.Create(log)
+		defer file.Close()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
+			file.Close()
 			os.Exit(1)
 		}
-		defer file.Close()
 		return nil
 	}
 }
