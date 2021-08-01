@@ -1,4 +1,4 @@
-module iyclo
+module github.com/tongson/iyclo
 
 go 1.16
 
