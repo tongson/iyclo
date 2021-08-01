@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/leaanthony/clir"
 )
@@ -18,7 +19,7 @@ func main() {
 	cli.BoolFlag("version", "Show version", &actions.version)
 	cli.Action(handleCli(&actions))
 	if err := cli.Run(); err != nil {
-		fmt.Printf("Error encountered: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error encountered: %v\n", err)
 	}
 }
 
