@@ -16,11 +16,18 @@ type actionT struct {
 func main() {
 	var action actionT
 	cli := clir.NewCli("iyclo", "Well-oiled containers", versionString)
+	cli.SetBannerFunction(customBanner)
 	cli.BoolFlag("version", "Show version", &action.version)
+	cli.BoolFlag("v", "Show version", &action.version)
 	cli.Action(handleCli(&action))
 	if err := cli.Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error encountered: %v\n", err)
 	}
+}
+
+func customBanner(cli *clir.Cli) string {
+	return `iyclo
+` + fmt.Sprintf("%s\n%s", cli.ShortDescription(), cli.Version())
 }
 
 func printVersion() {
