@@ -41,7 +41,7 @@ func handleCli(action *actionT) clir.Action {
 		}
 		var log string
 		if (*action).log == "" {
-			log = "/var/log/iyclo.json"
+			log = defaultLog
 		} else {
 			log = (*action).log
 		}
