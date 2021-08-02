@@ -18,5 +18,7 @@ func main() {
 	if err := cli.Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error encountered: %v\n", err)
 		os.Exit(1)
+	} else {
+		os.Exit(0)
 	}
 }
