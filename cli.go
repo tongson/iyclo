@@ -55,7 +55,7 @@ func unixSocket(path string) net.Listener {
 	return listener
 }
 
-func handleCli(action *actionT) clir.Action {
+func mainCli(action *actionT) clir.Action {
 	return func() error {
 		if (*action).version {
 			printVersion()
