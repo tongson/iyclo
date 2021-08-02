@@ -33,3 +33,10 @@ func TestLogCreation(t *testing.T) {
 	assert.Equal(t, true, gl.IsFile(lf))
 	os.Remove(lf)
 }
+
+func TestUnixSocket(t *testing.T) {
+	l := unixSocket("cli_test.socket")
+	assert.Equal(t, true, gl.IsFile("cli_test.socket"))
+	l.Close()
+	assert.Equal(t, false, gl.IsFile("cli_test.socket"))
+}
