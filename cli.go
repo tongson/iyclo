@@ -23,6 +23,17 @@ func printVersion() {
 	os.Exit(0)
 }
 
+func jLog(log string) zerolog.Logger {
+	zerolog.TimeFieldFormat = time.RFC3339
+	jsonFile, err := os.OpenFile(log, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0600)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
+		jsonFile.Close()
+		os.Exit(1)
+	}
+	return zerolog.New(jsonFile).With().Timestamp().Logger()
+}
+
 func handleCli(action *actionT) clir.Action {
 	return func() error {
 		if (*action).version {
@@ -34,16 +45,7 @@ func handleCli(action *actionT) clir.Action {
 		} else {
 			log = (*action).log
 		}
-		zerolog.TimeFieldFormat = time.RFC3339
-		jsonFile, err := os.OpenFile(log, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0600)
-		defer jsonFile.Close()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
-			jsonFile.Close()
-			os.Exit(1)
-		}
-		var jl zerolog.Logger
-		jl = zerolog.New(jsonFile).With().Timestamp().Logger()
+		jl := jLog(log)
 		jl.Info().Msg("Starting up...")
 		return nil
 	}
