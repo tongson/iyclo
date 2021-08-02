@@ -60,6 +60,7 @@ func mainCli(action *actionT) clir.Action {
 		if (*action).version {
 			printVersion()
 		}
+
 		var log string
 		if (*action).log == "" {
 			log = defaultLog
@@ -67,6 +68,7 @@ func mainCli(action *actionT) clir.Action {
 			log = (*action).log
 		}
 		jl := jLog(log)
+
 		var db string
 		if (*action).db == "" {
 			db = defaultDb
@@ -75,6 +77,7 @@ func mainCli(action *actionT) clir.Action {
 		}
 		// No need to test os.MkdirAll()
 		os.MkdirAll(db, 0700)
+
 		var socket string
 		if (*action).socket == "" {
 			socket = defaultSocket
@@ -83,6 +86,7 @@ func mainCli(action *actionT) clir.Action {
 		}
 		l := unixSocket(socket)
 		defer l.Close()
+
 		jl.Info().Msg("Starting up...")
 		return nil
 	}
