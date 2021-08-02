@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/leaanthony/clir"
+	clir "github.com/leaanthony/clir"
 )
 
 
