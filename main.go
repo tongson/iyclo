@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	cli := clir.NewCli("iyclo", "Well-oiled containers", versionString)
+	cli := clir.NewCli("iyclo", "Well-oiled containers", versionStringG)
 	cli.SetBannerFunction(customBanner)
 	var action actionT
 	cli.BoolFlag("V", "Show version", &action.version)

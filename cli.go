@@ -24,7 +24,7 @@ func customBanner(cli *clir.Cli) string {
 }
 
 func printVersion() {
-	fmt.Printf("%s\n", versionString)
+	fmt.Printf("%s\n", versionStringG)
 	os.Exit(0)
 }
 
@@ -56,7 +56,7 @@ func mainCli(action *actionT) clir.Action {
 
 		var log string
 		if (*action).log == "" {
-			log = defaultLog
+			log = defaultLogG
 		} else {
 			log = (*action).log
 		}
@@ -64,7 +64,7 @@ func mainCli(action *actionT) clir.Action {
 
 		var db string
 		if (*action).db == "" {
-			db = defaultDb
+			db = defaultDbG
 		} else {
 			db = (*action).db
 		}
@@ -73,7 +73,7 @@ func mainCli(action *actionT) clir.Action {
 
 		var socket string
 		if (*action).socket == "" {
-			socket = defaultSocket
+			socket = defaultSocketG
 		} else {
 			socket = (*action).socket
 		}
