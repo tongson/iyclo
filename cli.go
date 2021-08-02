@@ -28,7 +28,6 @@ func jLog(log string) zerolog.Logger {
 	jsonFile, err := os.OpenFile(log, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0600)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
-		jsonFile.Close()
 		os.Exit(1)
 	}
 	return zerolog.New(jsonFile).With().Timestamp().Logger()
