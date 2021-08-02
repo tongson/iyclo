@@ -51,6 +51,7 @@ func handleCli(action *actionT) clir.Action {
 		} else {
 			db = (*action).db
 		}
+		// No need to test os.MkdirAll()
 		os.MkdirAll(db, 0700)
 		jl.Info().Msg("Starting up...")
 		return nil
