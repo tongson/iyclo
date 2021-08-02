@@ -20,6 +20,7 @@ func customBanner(cli *clir.Cli) string {
 
 func printVersion() {
 	fmt.Printf("%s\n", versionString)
+	os.Exit(0)
 }
 
 func handleCli(action *actionT) clir.Action {
