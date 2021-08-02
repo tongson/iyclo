@@ -12,7 +12,7 @@ import (
 	lua "github.com/yuin/gopher-lua"
 )
 
-//go:embed lua/*
+//go:embed src/*
 var luaSrc embed.FS
 
 func mainHttp(l net.Listener) {
@@ -31,5 +31,5 @@ func handleHttp(c echo.Context) error {
 	L.SetMx(256)
 	glecho.Load(L, c) // Loads global E
 	ll.Preload(L)     // Load embedded Lua modules
-	return ll.Main(L, ll.ReadFile(luaSrc, "lua/main.lua"))
+	return ll.Main(L, ll.ReadFile(luaSrc, "src/main.lua"))
 }
