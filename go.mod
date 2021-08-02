@@ -9,6 +9,7 @@ require (
 	github.com/stretchr/testify v1.7.0
 	github.com/tongson/LadyLua v0.0.0-20210802053410-0468f5521212
 	github.com/tongson/gl v0.0.0-20210802012109-4aeb0d4a0fcd
+	github.com/yuin/gluamapper v0.0.0-20150323120927-d836955830e7
 	github.com/yuin/gopher-lua v0.0.0-20210529063254-f4c35e4016d9
 )
 
