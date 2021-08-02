@@ -375,6 +375,8 @@ github.com/tongson/LadyLua v0.0.0-20210802053410-0468f5521212/go.mod h1:0/gPaTEx
 github.com/tongson/gl v0.0.0-20210722053448-dfbc7abd31bf/go.mod h1:8rZKFhk3K0aIQLgYbfDbTkg5i1htgcxtIziuaW7hEsY=
 github.com/tongson/gl v0.0.0-20210802012109-4aeb0d4a0fcd h1:JzCCCpOCcRRmYMLLNibCnOK0wYeB+7HLpgnXcHe331I=
 github.com/tongson/gl v0.0.0-20210802012109-4aeb0d4a0fcd/go.mod h1:8rZKFhk3K0aIQLgYbfDbTkg5i1htgcxtIziuaW7hEsY=
+github.com/tongson/gopher-lua v0.0.0-20210610051759-53ab9600e09f h1:ID4/mpO4tsCDjK8jg28QUvsixUYPQ3uqn91Gkl/RHwY=
+github.com/tongson/gopher-lua v0.0.0-20210610051759-53ab9600e09f/go.mod h1:E1AXubJBdNmFERAOucpDIxNzeGfLzg0mYh+UfMWdChA=
 github.com/ugorji/go v1.1.4/go.mod h1:uQMGLiO92mf5W77hV/PUCpI3pbzQx3CRekS0kk+RGrc=
 github.com/valyala/bytebufferpool v1.0.0 h1:GqA5TC/0021Y/b9FG4Oi9Mr3q7XYx6KllzawFIhcdPw=
 github.com/valyala/bytebufferpool v1.0.0/go.mod h1:6bBcMArwyJ5K/AmCkWv1jt77kVWyCJ6HpOuEn7z0Csc=
@@ -390,8 +392,6 @@ github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9de
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
-github.com/yuin/gopher-lua v0.0.0-20210529063254-f4c35e4016d9 h1:k/gmLsJDWwWqbLCur2yWnJzwQEKRcAHXo6seXGuSwWw=
-github.com/yuin/gopher-lua v0.0.0-20210529063254-f4c35e4016d9/go.mod h1:E1AXubJBdNmFERAOucpDIxNzeGfLzg0mYh+UfMWdChA=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.etcd.io/etcd/api/v3 v3.5.0/go.mod h1:cbVKeC6lCfl7j/8jBhAK6aIYO9XOjdptoxU/nLQcPvs=
 go.etcd.io/etcd/client/pkg/v3 v3.5.0/go.mod h1:IJHfcCEKxYu1Os13ZdwCwIUTUVGYTSAM3YSwc9/Ac1g=
