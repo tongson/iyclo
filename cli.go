@@ -4,10 +4,11 @@ import (
 	"embed"
 	"fmt"
 	"os"
+	"time"
 
 	clir "github.com/leaanthony/clir"
+	zerolog "github.com/rs/zerolog"
 )
-
 
 //go:embed assets/*
 var assetsSrc embed.FS
@@ -32,13 +33,17 @@ func handleCli(action *actionT) clir.Action {
 		} else {
 			log = (*action).log
 		}
-		file, err := os.Create(log)
-		defer file.Close()
+		zerolog.TimeFieldFormat = time.RFC3339
+		jsonFile, err := os.OpenFile(log, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0600)
+		defer jsonFile.Close()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
-			file.Close()
+			jsonFile.Close()
 			os.Exit(1)
 		}
+		var jl zerolog.Logger
+		jl = zerolog.New(jsonFile).With().Timestamp().Logger()
+		jl.Info().Msg("Starting up...")
 		return nil
 	}
 }
