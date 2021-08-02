@@ -7,4 +7,5 @@ const defaultDb = "/var/lib/iyclo.bitcask"
 type actionT struct {
 	version bool
 	log     string
+	db      string
 }

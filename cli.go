@@ -45,6 +45,13 @@ func handleCli(action *actionT) clir.Action {
 			log = (*action).log
 		}
 		jl := jLog(log)
+		var db string
+		if (*action).db == "" {
+			db = defaultDb
+		} else {
+			db = (*action).db
+		}
+		os.MkdirAll(db, 0700)
 		jl.Info().Msg("Starting up...")
 		return nil
 	}
