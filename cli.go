@@ -86,6 +86,7 @@ func mainCli(action *actionT) clir.Action {
 		}
 		l := unixSocket(socket)
 		defer l.Close()
+		mainHttp(l)
 
 		jl.Info().Msg("Starting up...")
 		return nil
