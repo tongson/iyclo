@@ -49,7 +49,7 @@ func unixSocket(path string) net.Listener {
 		sig := <-c
 		fmt.Fprintf(os.Stderr, "Caught signal %s: shutting down.", sig)
 		listener.Close()
-		os.Exit(0)
+		os.Exit(255)
 	}(sigc)
 
 	return listener
