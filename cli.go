@@ -3,7 +3,10 @@ package main
 import (
 	"embed"
 	"fmt"
+	"net"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
 	clir "github.com/leaanthony/clir"
@@ -33,6 +36,25 @@ func jLog(log string) zerolog.Logger {
 	return zerolog.New(jsonFile).With().Timestamp().Logger()
 }
 
+func unixSocket(path string) net.Listener {
+	listener, err := net.Listen("unix", path)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to initialize socket: %v\n", err.Error())
+		os.Exit(1)
+	}
+	os.Chmod(path, 0600)
+	sigc := make(chan os.Signal, 1)
+	signal.Notify(sigc, os.Interrupt, os.Kill, syscall.SIGTERM)
+	go func(c chan os.Signal) {
+		sig := <-c
+		fmt.Fprintf(os.Stderr, "Caught signal %s: shutting down.", sig)
+		listener.Close()
+		os.Exit(0)
+	}(sigc)
+
+	return listener
+}
+
 func handleCli(action *actionT) clir.Action {
 	return func() error {
 		if (*action).version {
@@ -53,6 +75,14 @@ func handleCli(action *actionT) clir.Action {
 		}
 		// No need to test os.MkdirAll()
 		os.MkdirAll(db, 0700)
+		var socket string
+		if (*action).socket == "" {
+			socket = defaultSocket
+		} else {
+			socket = (*action).socket
+		}
+		l := unixSocket(socket)
+		defer l.Close()
 		jl.Info().Msg("Starting up...")
 		return nil
 	}

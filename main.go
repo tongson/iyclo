@@ -13,6 +13,7 @@ func main() {
 	cli.BoolFlag("V", "Show version", &action.version)
 	cli.StringFlag("log", "Path to JSON log", &action.log)
 	cli.StringFlag("db", "Path to state directory", &action.db)
+	cli.StringFlag("socket", "Path to the Unix socket", &action.socket)
 	cli.Action(handleCli(&action))
 	if err := cli.Run(); err != nil {
 		os.Exit(1)
