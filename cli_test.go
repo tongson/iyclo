@@ -22,7 +22,7 @@ func TestVersionString(t *testing.T) {
 	err := cmd.Run()
 	_, ok := err.(*exec.ExitError)
 	assert.Equal(t, false, ok)
-	expectedString := "0.1.0 (Chill Hazelnut)\n"
+	expectedString := versionString + "\n"
 	assert.Equal(t, expectedString, stdout.String())
 }
 
