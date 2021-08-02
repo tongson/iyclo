@@ -7,13 +7,6 @@ import (
 	"github.com/leaanthony/clir"
 )
 
-const versionString = "0.1.0 (Chill Hazelnut)"
-
-type actionT struct {
-	version bool
-	log string
-}
-
 func main() {
 	cli := clir.NewCli("iyclo", "Well-oiled containers", versionString)
 	cli.SetBannerFunction(customBanner)
