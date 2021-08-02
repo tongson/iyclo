@@ -84,7 +84,7 @@ func mainCli(action *actionT) clir.Action {
 			jl.Debug().Msg("Shutting down...")
 			fmt.Fprintf(os.Stderr, "Caught signal %s: shutting down.", sig)
 			l.Close()
-			os.Exit(255)
+			os.Exit(0)
 		}(sigc)
 		jl.Info().Msg("Starting up...")
 		mainHttp(l)
