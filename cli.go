@@ -43,15 +43,6 @@ func unixSocket(path string) net.Listener {
 		os.Exit(1)
 	}
 	os.Chmod(path, 0600)
-	sigc := make(chan os.Signal, 1)
-	signal.Notify(sigc, os.Interrupt, os.Kill, syscall.SIGTERM)
-	go func(c chan os.Signal) {
-		sig := <-c
-		fmt.Fprintf(os.Stderr, "Caught signal %s: shutting down.", sig)
-		listener.Close()
-		os.Exit(255)
-	}(sigc)
-
 	return listener
 }
 
@@ -86,6 +77,15 @@ func mainCli(action *actionT) clir.Action {
 		}
 		l := unixSocket(socket)
 		defer l.Close()
+		sigc := make(chan os.Signal, 1)
+		signal.Notify(sigc, os.Interrupt, os.Kill, syscall.SIGTERM)
+		go func(c chan os.Signal) {
+			sig := <-c
+			jl.Debug().Msg("Shutting down...")
+			fmt.Fprintf(os.Stderr, "Caught signal %s: shutting down.", sig)
+			l.Close()
+			os.Exit(255)
+		}(sigc)
 		jl.Info().Msg("Starting up...")
 		mainHttp(l)
 		return nil
