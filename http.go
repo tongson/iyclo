@@ -30,7 +30,7 @@ func handleHttp(c echo.Context) error {
 	defer L.Close()
 	L.SetMx(256)
 	glecho.Load(L, c)     // Loads global E(Echo context)
-	glecho.Logger(L, jlG) // Loads global L(Logger)
+	glecho.LoadLogger(L, jlG) // Loads global L(Logger)
 	ll.Preload(L)         // Load embedded Lua modules
 	return ll.Main(L, ll.ReadFile(luaSrc, "src/main.lua"))
 }

@@ -94,7 +94,7 @@ var loggerMethods = map[string]lua.LGFunction{
 	},
 }
 
-func Logger(L *lua.LState, jl zerolog.Logger) {
+func LoadLogger(L *lua.LState, jl zerolog.Logger) {
 	loggerNew := func(L *lua.LState) int {
 		ud := L.NewUserData()
 		ud.Value = loggerInit(jl)
