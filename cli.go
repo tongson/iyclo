@@ -13,6 +13,8 @@ import (
 	zerolog "github.com/rs/zerolog"
 )
 
+var jlG zerolog.Logger
+
 //go:embed assets/*
 var assetsSrc embed.FS
 
@@ -58,7 +60,7 @@ func mainCli(action *actionT) clir.Action {
 		} else {
 			log = (*action).log
 		}
-		jl := jLog(log)
+		jlG = jLog(log)
 
 		var db string
 		if (*action).db == "" {
@@ -81,12 +83,12 @@ func mainCli(action *actionT) clir.Action {
 		signal.Notify(sigc, os.Interrupt, os.Kill, syscall.SIGTERM)
 		go func(c chan os.Signal) {
 			sig := <-c
-			jl.Debug().Msg("Shutting down...")
+			jlG.Debug().Msg("Shutting down...")
 			fmt.Fprintf(os.Stderr, "Caught signal %s: shutting down.", sig)
 			l.Close()
 			os.Exit(0)
 		}(sigc)
-		jl.Info().Msg("Starting up...")
+		jlG.Info().Msg("Starting up...")
 		mainHttp(l)
 		return nil
 	}
