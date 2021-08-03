@@ -18,7 +18,10 @@ func TestRoute(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/endpoint", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
-	if assert.NoError(t, handleHttp(c)) {
+	v := make(map[string]string)
+	v["db"] = "test"
+	h := handleHttp(jLog("/dev/null"), v)
+	if assert.NoError(t, h(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
 		assert.Equal(t, expected, rec.Body.String())
 	}
