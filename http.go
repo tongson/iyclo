@@ -31,10 +31,10 @@ func handleHttp(c echo.Context) error {
 	L.SetMx(1024)
 	glecho.Load(L, c)            // _G.E (Echo context)
 	glecho.LoadLogger(L, jlG)    // _G.L (Logger)
-	ll.LoadGlobalGo(L, "exec")   // _G.exec
-	ll.LoadGlobalGo(L, "os")     // _G.os
-	ll.LoadGlobalGo(L, "fs")     // _G.fs
-	ll.LoadGlobalGo(L, "extend") // _G.extend
+	ll.GlobalGo(L, "exec")   // _G.exec
+	ll.GlobalGo(L, "os")     // _G.os
+	ll.GlobalGo(L, "fs")     // _G.fs
+	ll.GlobalGo(L, "extend") // _G.extend
 	ll.PreloadGo(L, "json")      // require("json")
 	ll.PreloadGo(L, "ulid")      // require("ulid")
 	ll.PreloadGo(L, "bitcask")   // require("bitcask")
