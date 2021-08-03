@@ -2,8 +2,8 @@ package main
 
 const versionStringG = "0.1.0 (Chill Hazelnut)"
 const defaultLogG = "/var/log/iyclo.json"
-const defaultDbG = "/var/lib/iyclo.bitcask"
-const defaultSocketG = "/var/run/iyclo.socket"
+const defaultDbG = "/var/lib/iyclo.db"
+const defaultSocketG = "/var/run/iyclo.sock"
 
 type actionT struct {
 	version bool
