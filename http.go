@@ -42,6 +42,7 @@ func handleHttp(jl zerolog.Logger, v map[string]string) echo.HandlerFunc {
 		ll.PreloadGo(L, "bitcask") // require("bitcask")
 		ll.PreloadGo(L, "crypto")  // require("crypto")
 		ll.Preload(L)              // Embedded plain Lua modules
+		ll.PreloadModule(L, "handler", ll.ReadFile(luaSrc, "src/handler.lua"))
 		return ll.Main(L, ll.ReadFile(luaSrc, "src/main.lua"))
 	}
 }

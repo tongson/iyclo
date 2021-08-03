@@ -1,0 +1,7 @@
+return {
+	get_containers = function()
+		E:response():write_header(202)
+		E:response():write("ok")
+		E:response():flush()
+	end,
+}
