@@ -1,4 +1,6 @@
 local tuple = require("tuple")
+local ulid = require("ulid")
+local ID = ulid.new()
 local handler = require("handler")
 local request = tuple(E:request():method(), E:request():uri())
 local signature = tostring(request)
@@ -9,7 +11,8 @@ local entrypoints = {
 }
 local matched = entrypoints[signature]
 if matched then
-	return handler[matched]()
+	L:info(ID, { sig = signature, fn = matched })
+	return handler[matched](ID)
 else
 	E:response():write_header(404)
 	E:response():flush()
