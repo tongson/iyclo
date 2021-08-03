@@ -31,3 +31,14 @@ func TestRoute(t *testing.T) {
 		assert.Equal(t, expected, rec.Body.String())
 	}
 }
+
+func TestNotFound(t *testing.T) {
+	e := echo.New()
+	req := httptest.NewRequest(http.MethodGet, "/X", nil)
+	rec := httptest.NewRecorder()
+	c := e.NewContext(req, rec)
+	h := handleHttp(t_logger, t_variables)
+	if assert.NoError(t, h(c)) {
+		assert.Equal(t, http.StatusNotFound, rec.Code)
+	}
+}
