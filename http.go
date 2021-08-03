@@ -27,13 +27,13 @@ func mainHttp(h *httpT) {
 	e.Logger.Fatal(e.StartServer(server))
 }
 
-func handleHttp(jl zerolog.Logger, v map[string]string) echo.HandlerFunc {
-	return func(c echo.Context) error {
+func handleHttp(l zerolog.Logger, v map[string]string) echo.HandlerFunc {
+	return func(e echo.Context) error {
 		L := lua.NewState()
 		defer L.Close()
 		L.SetMx(1024)
-		glecho.Context(L, c)       // _G.E (Echo context)
-		glecho.Logger(L, jl)       // _G.L (Logger)
+		glecho.Context(L, e)       // _G.E (Echo context)
+		glecho.Logger(L, l)        // _G.L (Logger)
 		glecho.Variables(L, v)     // _G.V (Configuration variables)
 		ll.GlobalGo(L, "exec")     // _G.exec
 		ll.GlobalGo(L, "os")       // _G.os
