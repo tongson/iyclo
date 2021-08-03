@@ -9,18 +9,17 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var (
-	expected = `ok`
-)
-
 func TestRoute(t *testing.T) {
+	vars := make(map[string]string)
+	vars["db"] = "/tmp"
+	jl := jLog("/dev/null")
 	e := echo.New()
+	expected := `ok`
+
 	req := httptest.NewRequest(http.MethodGet, "/api/v1/containers", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
-	v := make(map[string]string)
-	v["db"] = "test"
-	h := handleHttp(jLog("/dev/null"), v)
+	h := handleHttp(jl, vars)
 	if assert.NoError(t, h(c)) {
 		assert.Equal(t, http.StatusAccepted, rec.Code)
 		assert.Equal(t, expected, rec.Body.String())
