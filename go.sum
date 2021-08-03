@@ -372,6 +372,8 @@ github.com/tidwall/redcon v1.4.1/go.mod h1:XwNPFbJ4ShWNNSA2Jazhbdje6jegTCcwFR6mf
 github.com/tmc/grpc-websocket-proxy v0.0.0-20190109142713-0ad062ec5ee5/go.mod h1:ncp9v5uamzpCO7NfCPTXjqaC+bZgJeR0sMTm6dMHP7U=
 github.com/tongson/LadyLua v0.0.0-20210802053410-0468f5521212 h1:Vi807icMpvrUvFCJnU/QWqcMEx5GyWi48JLxmZJpV3U=
 github.com/tongson/LadyLua v0.0.0-20210802053410-0468f5521212/go.mod h1:0/gPaTExHyIXwAQnXgeBVwJrDCHnfAMk3bbD7jNl8OI=
+github.com/tongson/LadyLua v0.0.0-20210803024821-77ae41cf638d h1:+YMFieTWzvmciDO950oEU+JL5ySwDIGIKI7ofDNzWmg=
+github.com/tongson/LadyLua v0.0.0-20210803024821-77ae41cf638d/go.mod h1:0/gPaTExHyIXwAQnXgeBVwJrDCHnfAMk3bbD7jNl8OI=
 github.com/tongson/gl v0.0.0-20210722053448-dfbc7abd31bf/go.mod h1:8rZKFhk3K0aIQLgYbfDbTkg5i1htgcxtIziuaW7hEsY=
 github.com/tongson/gl v0.0.0-20210802012109-4aeb0d4a0fcd h1:JzCCCpOCcRRmYMLLNibCnOK0wYeB+7HLpgnXcHe331I=
 github.com/tongson/gl v0.0.0-20210802012109-4aeb0d4a0fcd/go.mod h1:8rZKFhk3K0aIQLgYbfDbTkg5i1htgcxtIziuaW7hEsY=
