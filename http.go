@@ -2,7 +2,6 @@ package main
 
 import (
 	"embed"
-	"net"
 	"net/http"
 
 	echo "github.com/labstack/echo/v4"
@@ -16,13 +15,13 @@ import (
 //go:embed src/*
 var luaSrc embed.FS
 
-func mainHttp(l net.Listener, jl zerolog.Logger, v map[string]string) {
+func mainHttp(h *httpT) {
 	e := echo.New()
-	e.Listener = l
+	e.Listener = (*h).socket
 	server := new(http.Server)
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	e.GET("/*", handleHttp(jl, v))
+	e.GET("/*", handleHttp((*h).logger, (*h).variables))
 	e.Logger.Fatal(e.StartServer(server))
 }
 

@@ -16,6 +16,12 @@ import (
 //go:embed assets/*
 var assetsSrc embed.FS
 
+type httpT struct {
+	logger    zerolog.Logger
+	socket    net.Listener
+	variables map[string]string
+}
+
 func customBanner(cli *clir.Cli) string {
 	s, _ := assetsSrc.ReadFile("assets/iyclo.txt")
 	return fmt.Sprintf("%s\n%s\n%s", string(s), cli.ShortDescription(), cli.Version())
@@ -58,7 +64,6 @@ func mainCli(action *actionT) clir.Action {
 		} else {
 			log = (*action).log
 		}
-		jl := jLog(log)
 
 		var db string
 		if (*action).db == "" {
@@ -75,6 +80,8 @@ func mainCli(action *actionT) clir.Action {
 		} else {
 			socket = (*action).socket
 		}
+
+		jl := jLog(log)
 		l := unixSocket(socket)
 		defer l.Close()
 		sigc := make(chan os.Signal, 1)
@@ -91,8 +98,13 @@ func mainCli(action *actionT) clir.Action {
 		vars = make(map[string]string)
 		vars["db"] = (*action).db
 
+		http := new(httpT)
+		http.logger = jl
+		http.socket = l
+		http.variables = vars
+
 		jl.Info().Msg("Starting up...")
-		mainHttp(l, jl, vars)
+		mainHttp(http)
 		return nil
 	}
 }
