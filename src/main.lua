@@ -1,6 +1,5 @@
 local tuple = require("tuple")
-local ulid = require("ulid")
-local ID = ulid.new()
+local ID = require("ulid").new()
 local handler = require("handler")
 local request = tuple(E:request():method(), E:request():uri())
 local signature = tostring(request)
