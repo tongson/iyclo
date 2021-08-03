@@ -5,9 +5,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/labstack/echo/v4"
-	"github.com/stretchr/testify/assert"
-	"github.com/rs/zerolog"
+	echo "github.com/labstack/echo/v4"
+	zerolog "github.com/rs/zerolog"
+	assert "github.com/stretchr/testify/assert"
 )
 
 var t_variables map[string]string
