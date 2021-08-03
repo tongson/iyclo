@@ -22,6 +22,8 @@ func mainHttp(h *httpT) {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.GET("/*", handleHttp((*h).logger, (*h).variables))
+	e.POST("/*", handleHttp((*h).logger, (*h).variables))
+	e.DELETE("/*", handleHttp((*h).logger, (*h).variables))
 	e.Logger.Fatal(e.StartServer(server))
 }
 
