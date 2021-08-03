@@ -16,23 +16,24 @@ import (
 //go:embed src/*
 var luaSrc embed.FS
 
-func mainHttp(l net.Listener, jl zerolog.Logger) {
+func mainHttp(l net.Listener, jl zerolog.Logger, v map[string]string) {
 	e := echo.New()
 	e.Listener = l
 	server := new(http.Server)
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	e.GET("/*", handleHttp(jl))
+	e.GET("/*", handleHttp(jl, v))
 	e.Logger.Fatal(e.StartServer(server))
 }
 
-func handleHttp(jl zerolog.Logger) echo.HandlerFunc {
+func handleHttp(jl zerolog.Logger, v map[string]string) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		L := lua.NewState()
 		defer L.Close()
 		L.SetMx(1024)
 		glecho.Context(L, c)       // _G.E (Echo context)
 		glecho.Logger(L, jl)       // _G.L (Logger)
+		glecho.Variables(L, v)     // _G.V (Configuration variables)
 		ll.GlobalGo(L, "exec")     // _G.exec
 		ll.GlobalGo(L, "os")       // _G.os
 		ll.GlobalGo(L, "fs")       // _G.fs

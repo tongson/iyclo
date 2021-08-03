@@ -86,8 +86,13 @@ func mainCli(action *actionT) clir.Action {
 			l.Close()
 			os.Exit(0)
 		}(sigc)
+
+		var vars map[string]string
+		vars = make(map[string]string)
+		vars["db"] = (*action).db
+
 		jl.Info().Msg("Starting up...")
-		mainHttp(l, jl)
+		mainHttp(l, jl, vars)
 		return nil
 	}
 }
