@@ -107,8 +107,8 @@ func Logger(L *lua.LState, jl zerolog.Logger) {
 	}
 	mt := L.NewTypeMetatable(LOGGER_TYPE)
 	L.SetField(mt, "__index", L.SetFuncs(L.NewTable(), loggerMethods))
-	L.SetGlobal("_LOG", L.SetFuncs(mt, loggerExports))
-	newLogger := L.GetField(L.GetField(L.Get(lua.GlobalsIndex), "_LOG"), "new").(*lua.LFunction)
+	L.SetGlobal("_ZEROLOG", L.SetFuncs(mt, loggerExports))
+	newLogger := L.GetField(L.GetField(L.Get(lua.GlobalsIndex), "_ZEROLOG"), "new").(*lua.LFunction)
 	L.Push(newLogger)
 	L.Call(0, 1)
 	L.SetGlobal("L", L.Get(L.GetTop()))
