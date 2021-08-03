@@ -29,8 +29,16 @@ func handleHttp(c echo.Context) error {
 	L := lua.NewState()
 	defer L.Close()
 	L.SetMx(1024)
-	glecho.Load(L, c)     // Loads global E(Echo context)
+	glecho.Load(L, c)         // Loads global E(Echo context)
 	glecho.LoadLogger(L, jlG) // Loads global L(Logger)
-	ll.Preload(L)         // Load embedded Lua modules
+	ll.LoadGlobalGo(L, "exec")
+	ll.LoadGlobalGo(L, "os")
+	ll.LoadGlobalGo(L, "fs")
+	ll.LoadGlobalGo(L, "extend")
+	ll.PreloadGo(L, "json")
+	ll.PreloadGo(L, "ulid")
+	ll.PreloadGo(L, "bitcask")
+	ll.PreloadGo(L, "crypto")
+	ll.Preload(L) // Load embedded Lua modules
 	return ll.Main(L, ll.ReadFile(luaSrc, "src/main.lua"))
 }
