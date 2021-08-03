@@ -124,7 +124,7 @@ func XLoader(L *lua.LState) int {
 	return 1
 }
 
-func Load(L *lua.LState, c echo.Context) {
+func Context(L *lua.LState, c echo.Context) {
 	t := L.NewTable()
 
 	lCtx := L.NewTypeMetatable("context")
