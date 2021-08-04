@@ -1,5 +1,6 @@
 local tuple = require("tuple")
-local ID = require("ulid").new()
+local crypto = require("crypto")
+local ID = crypto.fast_random()
 local handler = require("handler")
 local request = tuple(E:request():method(), E:request():uri())
 local signature = tostring(request)
