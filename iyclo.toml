@@ -20,6 +20,8 @@ type = "string"
 require = true
 type = "table"
 
+[V]
+property = true
 [E]
 struct = "Echo"
 [L]
