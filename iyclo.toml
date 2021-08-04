@@ -1,0 +1,26 @@
+[selene.structs.Echo.request]
+method = true
+[selene.structs.Echo.response]
+method = true
+
+[selene.structs.Logger.info]
+method = true
+[selene.structs.Logger.debug]
+method = true
+[[selene.structs.Logger.info.args]]
+required = true
+type = "string"
+[[selene.structs.Logger.info.args]]
+required = true
+type = "table"
+[[selene.structs.Logger.debug.args]]
+required = true
+type = "string"
+[[selene.structs.Logger.debug.args]]
+require = true
+type = "table"
+
+[E]
+struct = "Echo"
+[L]
+struct = "Logger"
