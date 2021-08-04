@@ -2,6 +2,10 @@
 base = "lua51"
 name = "ll"
 
+[[extend.args]]
+type = "string"
+required = true
+
 [[os.sleep.args]]
 type = "number"
 required = true
@@ -113,13 +117,26 @@ required = true
 [[string.append.args]]
 type = "string"
 required = true
+[string.to_map]
+args = []
+[string.splitv]
+args = []
+[string.split]
+args = []
+[string.contains]
+args = []
+[string.trim_start]
+args = []
+[string.trim_end]
+args = []
+
 
 
 [[table.find.args]]
 type = "table"
 required = true
 [[table.find.args]]
-type = "string"
+type = "any"
 required = true
 [[table.find.args]]
 type = "bool"
@@ -175,31 +192,9 @@ required = true
 [[table.unique.args]]
 type = "table"
 required = true
-
-
-[selene.structs.Echo.request]
-method = true
-[selene.structs.Echo.response]
-method = true
-
-[selene.structs.Logger.info]
-method = true
-[selene.structs.Logger.debug]
-method = true
-[[selene.structs.Logger.info.args]]
-required = true
-type = "string"
-[[selene.structs.Logger.info.args]]
-required = true
+[[table.read_only.args]]
+required = false
 type = "table"
-[[selene.structs.Logger.debug.args]]
-required = true
-type = "string"
-[[selene.structs.Logger.debug.args]]
-require = true
+[[table.clone.args]]
+required = false
 type = "table"
-
-[E]
-struct = "Echo"
-[L]
-struct = "Logger"
