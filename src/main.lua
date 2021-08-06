@@ -1,13 +1,14 @@
-local tuple = require("tuple")
 local crypto = require("crypto")
 local reqid = crypto.fast_random()
 local handler = require("handler")
-local request = tuple(E:request():method(), E:request():uri())
-local signature = tostring(request)
+local request = {}
+request[1] = E:request():method()
+request[2] = E:request():uri()
+local signature = table.concat(request, ";")
 -- Decision Table
 -- (method, path)
 local entrypoints = {
-	["(GET, /api/v1/containers)"] = "get_containers"
+	["GET;/api/v1/containers"] = "get_containers"
 }
 local matched = entrypoints[signature]
 if matched then
