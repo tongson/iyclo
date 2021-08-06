@@ -4,11 +4,11 @@ local handler = require("handler")
 local request = {}
 request[1] = E:request():method()
 request[2] = E:request():uri()
-local signature = table.concat(request, "]")
+local signature = table.concat(request, "%")
 -- Decision Table
 -- (method, path)
 local entrypoints = {
-	["GET]/api/v1/containers"] = "get_containers"
+	["GET%/api/v1/containers"] = "get_containers"
 }
 local matched = entrypoints[signature]
 if matched then
