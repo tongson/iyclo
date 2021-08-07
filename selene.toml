@@ -1,4 +1,4 @@
-std = "ll"
+std = "ll+iyclo"
 
 [rules]
 global_usage = "allow"
